@@ -334,35 +334,6 @@
                 if (!isActive) item.classList.add('active');
             });
         });
-
-        // AJAX Form Submission
-        const form = document.getElementById('auditForm');
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const btn = form.querySelector('button[type="submit"]');
-                const originalText = btn.innerText;
-                btn.innerText = 'Sending Request...';
-                
-                fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    headers: { 'Accept': 'application/json' }
-                }).then(response => {
-                    if (response.ok) {
-                        document.getElementById('formSuccess').style.display = 'block';
-                        form.reset();
-                        btn.innerText = originalText;
-                    } else {
-                        btn.innerText = 'Error. Please try again.';
-                        setTimeout(() => { btn.innerText = originalText; }, 3000);
-                    }
-                }).catch(error => {
-                    btn.innerText = 'Error. Please try again.';
-                    setTimeout(() => { btn.innerText = originalText; }, 3000);
-                });
-            });
-        }
     </script>
 </body>
 </html>
