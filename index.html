@@ -233,10 +233,10 @@
                 <h2 class="section-title text-center" style="margin-bottom: 1rem;">Ready to Find Where Your Marketing Data Is Leaking?</h2>
                 <p class="section-subtitle text-center">Request a confidential scan of your tracking infrastructure.</p>
                 
-                <form id="auditForm" action="https://formsubmit.co/dahajsainak@gmail.com" method="POST">
+                <form id="auditForm" action="https://api.web3forms.com/submit" method="POST">
                     <div id="formSuccess" style="display: none; background: rgba(0, 255, 204, 0.1); border: 1px solid var(--accent); color: var(--accent); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; text-align: center; font-weight: 600;">Success! Your audit request has been sent. We will review your site and contact you shortly.</div>
-                    <input type="hidden" name="_subject" value="New Audit Request from Tracking Leak Detective!">
-                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="access_key" value="89557971-b00b-4bf5-8919-bcb33eb6c29b">
+                    <input type="hidden" name="subject" value="New Audit Request from Tracking Leak Detective!">
                     <div class="grid grid-2">
                         <div class="form-group">
                             <label class="form-label">Website URL</label>
@@ -334,6 +334,35 @@
                 if (!isActive) item.classList.add('active');
             });
         });
+
+        // AJAX Form Submission
+        const form = document.getElementById('auditForm');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const btn = form.querySelector('button[type="submit"]');
+                const originalText = btn.innerText;
+                btn.innerText = 'Sending Request...';
+                
+                fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                }).then(response => {
+                    if (response.ok) {
+                        document.getElementById('formSuccess').style.display = 'block';
+                        form.reset();
+                        btn.innerText = originalText;
+                    } else {
+                        btn.innerText = 'Error. Please try again.';
+                        setTimeout(() => { btn.innerText = originalText; }, 3000);
+                    }
+                }).catch(error => {
+                    btn.innerText = 'Error. Please try again.';
+                    setTimeout(() => { btn.innerText = originalText; }, 3000);
+                });
+            });
+        }
     </script>
 </body>
 </html>
