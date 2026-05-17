@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GA4 Says You Have Sales, But Your Backend Disagrees — What’s Broken?</title>
+    <meta name="description" content="Why does Google Analytics 4 report more revenue than your Shopify or Stripe dashboard? Learn the secrets of attribution models and conversion paths.">
+        <link rel="canonical" href="https://trackingleakdetective.com/ga4-attribution-mismatch.html">
+    <meta property="og:url" content="https://trackingleakdetective.com/ga4-attribution-mismatch.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .blog-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .blog-content h2 {
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+        .blog-content h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+        .blog-content ul, .blog-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        .blog-content li {
+            margin-bottom: 0.5rem;
+        }
+        .blog-content ol li {
+            list-style-type: decimal;
+        }
+        .blog-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .blog-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .callout {
+            background: var(--surface-light);
+            border-left: 4px solid var(--priority-medium);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"></span>
+                Tracking Leak <br> Detective
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="traffic-audit.html">Traffic Audit</a>
+                <a href="ga4-gtm-setup.html">GA4/GTM Setup</a>
+                <a href="ecommerce-tracking.html">Ecommerce Tracking</a>
+                <a href="funnel-audit.html">Funnel Audit</a>
+                <a href="agency-support.html">Agency Support</a>
+                <a href="blog.html" class="active">Blog</a>
+            </div>
+            <a href="index.html#audit-form" class="btn btn-primary nav-btn">Get Free Audit</a>
+        </div>
+    </nav>
+
+    <div class="hero" style="min-height: auto; padding: 10rem 0 3rem;">
+        <div class="container">
+            <div class="blog-header" style="max-width: 900px; margin: 0 auto;">
+                <div class="module-badge">DATA DISCREPANCIES</div>
+                <h1 class="hero-title">GA4 Says You Have Sales, But Your Backend Disagrees — What’s Broken?</h1>
+                <p class="hero-subtitle">The classic panic moment for every business owner: Your analytics dashboard shows $20,000 in revenue, but your bank account only shows $15,000. Here is exactly what is happening.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="blog-content">
+                <img src="ga4_attribution_mismatch.webp" alt="Conceptual 3D illustration of an analytics dashboard colliding with a backend server via tangled data paths" class="blog-image">
+                
+                <p>It is the most common support ticket I receive from panicked business owners: <em>"My Google Analytics 4 (GA4) account says we made 150 sales yesterday, but Shopify only shows 110. Is my tracking broken? Am I being robbed?"</em></p>
+
+                <p>You aren't being robbed, and in most cases, your tracking isn't actually broken. You are simply experiencing the fundamental difference between how an accounting system views the world, and how a marketing platform views the world.</p>
+
+                <p>Your backend (Shopify, Stripe, WooCommerce) is an absolute, deterministic ledger. It only cares about one thing: Did the credit card clear? GA4, on the other hand, is a behavioral engine. It cares about <em>how</em> the user got there.</p>
+
+                <p>To understand why these two systems almost never match dollar-for-dollar, you need to understand two critical concepts: Attribution Models and Attribution Paths.</p>
+
+                <h2>What is an Attribution Model?</h2>
+                
+                <p>Imagine a soccer team scores a goal. The goalkeeper passed it to the defender, the defender passed it to the midfielder, the midfielder crossed it, and the striker kicked it into the net. Who gets the credit for the goal?</p>
+
+                <p>An <strong>Attribution Model</strong> is simply a set of rules that decides who gets the credit.</p>
+
+                <p>For years, the internet ran on the <strong>Last-Click Attribution</strong> model. In our soccer analogy, the striker gets 100% of the credit, and the rest of the team gets nothing. Your Shopify or WooCommerce backend still operates mostly like this. If a user clicks an email link and buys, Shopify says, "Email generated $100."</p>
+
+                <p>But GA4 is much smarter. By default, GA4 uses <strong>Data-Driven Attribution (DDA)</strong>. DDA uses machine learning algorithms to analyze your historical data and distribute fractional credit to every channel that helped score the goal.</p>
+
+                <div class="callout">
+                    <p><strong>Here is where the mismatch happens:</strong> If GA4 decides that a Facebook Ad was responsible for 40% of the sale, and Google Search was responsible for 60%, GA4 will record fractional revenue across those channels. If a user's browser blocks a cookie mid-journey, GA4 might accidentally count the same person twice under different channels, inflating your total recorded conversions.</p>
+                </div>
+
+                <h2>The Messy Reality of Attribution Paths</h2>
+
+                <p>We like to think of marketing as a straight line: User sees ad &rarr; User clicks &rarr; User buys.</p>
+
+                <p>The reality is an absolute mess. This mess is called the <strong>Attribution Path</strong> (or the conversion journey). A real customer path looks like this:</p>
+                <ul>
+                    <li><strong>Monday:</strong> User sees a Facebook ad on their phone while on the train. Clicks it. Browses. Leaves.</li>
+                    <li><strong>Wednesday:</strong> User remembers your brand. Searches your name on Google on their work laptop. Clicks an organic link. Signs up for your newsletter. Leaves.</li>
+                    <li><strong>Friday:</strong> User receives a promotional email. Opens it on their iPad. Clicks through. Leaves it in the cart.</li>
+                    <li><strong>Sunday:</strong> User is targeted by a Google Display retargeting ad. Clicks it. Finally purchases.</li>
+                </ul>
+
+                <p>In this scenario, which channel drove the sale? Facebook introduced them. Organic Search captured their email. Email warmed them up. Retargeting closed the deal.</p>
+
+                <p>Shopify will likely credit the Retargeting Ad (Last Click). If you look at Facebook Ads Manager, Mark Zuckerberg will claim 100% credit because his ad started the journey. If you look at your Email software, it will claim 100% credit because they clicked the newsletter. If you add up the revenue reported by Facebook, Google, and your Email platform, it will equal $300. But your backend only has $100.</p>
+
+                <h2>How to View Your Actual Paths in GA4</h2>
+
+                <p>As a business owner, you cannot afford to just look at the "Total Sales" column and guess what is working. You need to look under the hood to see the actual paths your customers are taking. GA4 has a dedicated section for this, and it is a goldmine for strategy.</p>
+
+                <p>Here is how to find and read it:</p>
+
+                <ol>
+                    <li>Log into your GA4 account.</li>
+                    <li>On the left-hand menu, click on <strong>Advertising</strong> (it looks like a little megaphone icon).</li>
+                    <li>Under the "Attribution" section in the menu, click on <strong>Conversion Paths</strong>.</li>
+                    <li>At the top of the report, ensure you select "Purchase" (or your main lead event) from the conversion dropdown menu.</li>
+                </ol>
+
+                <p>What you will see is a visual breakdown of your funnel divided into three stages: <strong>Early Touchpoints, Mid Touchpoints, and Late Touchpoints.</strong></p>
+
+                <p>You will finally see the truth. You might discover that Facebook Ads rarely ever close a sale (Late Touchpoint), but they are involved in 80% of the Early Touchpoints. This means if you turn off Facebook Ads because the "ROAS looks bad," your Google Organic sales will completely dry up a month later because you stopped feeding the top of the funnel.</p>
+
+                <h2>The Final Verdict</h2>
+
+                <p>Stop trying to make GA4 and your bank account match perfectly. It is an exercise in futility. They are built for different purposes.</p>
+
+                <p>Use your backend (Shopify, Stripe, WooCommerce) for <strong>Accounting</strong>. That is your source of truth for taxes, inventory, and cash flow.</p>
+
+                <p>Use GA4 for <strong>Marketing Trends and Directionality</strong>. Use it to understand the complex paths your users take, and to decide whether to scale up your ad budget or pivot your strategy.</p>
+
+                <p><em>(Note: While a 5% to 15% discrepancy between GA4 and your backend is totally normal due to ad blockers, cookie policies, and attribution modeling, anything over a 20% variance indicates a technical tracking leak. If your data is off by 30% or more, your datalayer or tag firing sequence is broken. In that case, reach out for a Technical Audit to patch the leak.)</em></p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-logo">Tracking Leak Detective</div>
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="index.html#audit-form">Contact</a>
+                <a href="sitemap-page.html">Sitemap</a>
+            </div>
+            <div class="footer-copy">© 2024 Tracking Leak Detective. Forensic Data Analysis.</div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/923113151229" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 32 32" width="35" height="35" fill="white">
+            <path d="M16.05 32h-.05c-2.65 0-5.25-.65-7.55-1.95L0 32l2.05-8.25A15.8 15.8 0 010 15.95 16 16 0 1116.05 32zm0-29.45a13.4 13.4 0 00-13.4 13.4c0 2.65.7 5.25 2.05 7.55l-1.2 4.8 4.95-1.25a13.3 13.3 0 007.6 2.3h.05A13.45 13.45 0 0029.5 15.95 13.45 13.45 0 0016.05 2.55zm8.05 19.3c-.45 1.25-2.5 2.4-3.5 2.55-1 .15-2.25.4-6.4-1.3-4.95-2.05-8.2-7.15-8.45-7.5-.25-.35-2.05-2.7-2.05-5.15s1.25-3.65 1.7-4.15c.45-.5.95-.6 1.25-.6h.9c.3 0 .7-.1 1.05.7.4 1 1.3 3.1 1.45 3.4.15.3.25.65.1.95s-.25.45-.5.7c-.25.25-.5.55-.7.75-.25.25-.5.5.2 1.7A11.35 11.35 0 0014 18.25c1.45 1.1 2.3 1.35 2.8 1.55.5.2.8.15 1.1-.15.3-.3 1.3-1.5 1.65-2 .35-.5.7-.4 1.15-.25.45.15 2.8 1.3 3.25 1.55.45.25.75.4.85.6.1.2.1 1.15-.35 2.4z"/>
+        </svg>
+    </a>
+</body>
+</html>
