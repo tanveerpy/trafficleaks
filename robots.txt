@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://trackingleakdetective.com/sitemap.xml
+Sitemap: https://itrackfix.com/sitemap.xml
