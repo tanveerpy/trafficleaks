@@ -58,8 +58,7 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="./" class="logo">
-                <span class="logo-icon"></span>
-                iTrackFix
+                <img src="logo.png" alt="iTrackFix Logo" style="height: 35px; margin-right: 10px; vertical-align: middle;"> iTrackFix
             </a>
             <button class="mobile-menu-btn" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('show'); document.querySelector('.nav-btn').classList.toggle('show');">
                 <span></span><span></span><span></span>
@@ -179,8 +178,14 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container footer-container">
-            <div class="footer-logo">iTrackFix</div>
+        <div class="container footer-container" style="align-items: flex-start;">
+            <div class="footer-brand" style="flex: 1 1 300px; min-width: 250px; text-align: left;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.8rem;">
+                    <img src="logo.png" alt="iTrackFix Logo" style="height: 35px;">
+                    <span style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.05em;">iTrackFix</span>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; max-width: 400px;">Expert GA4, GTM, and conversion funnel audits. We find exactly where your ad budget and sales are leaking, and repair your tracking infrastructure for maximum ROI.</p>
+            </div>
             <div class="footer-links">
                 <a href="about.html">About Us</a>
                 <a href="privacy-policy.html">Privacy Policy</a>
