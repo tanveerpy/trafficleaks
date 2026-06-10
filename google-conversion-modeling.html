@@ -171,7 +171,7 @@
                 <p>Without intervention, this would cause your Google Ads campaigns to think they are failing. If Google sends you 100 sales, but can only track 60 of them due to privacy blockers, its algorithm assumes the ads are performing terribly. It will stop bidding, your cost per acquisition (CPA) will skyrocket, and your revenue will crash.</p>
 
                 <div class="callout" style="border-left-color: var(--accent);">
-                    <p><strong>Real World Example:</strong> I recently audited a B2B ecommerce site where Google Ads reported 27 purchases for a campaign, while their backend CRM only showed 18 attributed sales. After running a full <a href="traffic-audit.html" style="color: var(--accent); font-weight: bold;">Traffic Audit</a> and implementing Consent Mode v2 and <a href="ga4-gtm-setup.html" style="color: var(--accent); font-weight: bold;">Enhanced Conversions</a>, the "dark" traffic illuminated. We reclaimed 30% of lost conversion data, allowing the algorithm to finally optimize correctly instead of shutting off a winning campaign.</p>
+                    <p><strong>Real World Example:</strong> I recently audited a B2B ecommerce site where Google Ads reported 27 purchases for a campaign, while their backend CRM only showed 18 attributed sales. After running a full <a href="traffic-audit.html" style="color: var(--accent); font-weight: bold;">Traffic Audit</a>, we identified significant conversion loss caused by privacy restrictions and incomplete consent implementation. After implementing Consent Mode v2 and <a href="ga4-gtm-setup.html" style="color: var(--accent); font-weight: bold;">Enhanced Conversions</a>, reporting accuracy improved substantially and the campaign regained stable optimization signals.</p>
                 </div>
 
                 <h2>How Conversion Modeling Works (The Simple Version)</h2>
@@ -223,6 +223,17 @@
                     <li><strong>The Algorithm will starve:</strong> Smart Bidding relies on conversion volume. If you artificially restrict the data by not using modeling, the algorithm will fail to optimize, driving up your costs.</li>
                     <li><strong>Competitors will outbid you:</strong> If your competitor is using modeled data, their algorithms see the "true" value of a keyword. They will bid higher and steal your market share because your broken tracking system tells you the keyword is too expensive.</li>
                 </ol>
+
+                <h2>Why Your CRM and Google Ads Will Never Match 100%</h2>
+                <p>Even with perfect tracking, Consent Mode v2, and Server-Side tagging, you will almost never see a 1-to-1 match between your advertising platform and your backend CRM (like Shopify, Salesforce, or WooCommerce). This is completely normal.</p>
+                <p>Here are the 5 primary reasons why discrepancies happen:</p>
+                <ul>
+                    <li><strong>Attribution Windows Differ:</strong> Google Ads attributes a conversion to the <em>day the ad was clicked</em>. Your CRM attributes the sale to the <em>day the transaction occurred</em>. If someone clicks an ad on Tuesday but buys on Friday, Google logs it on Tuesday.</li>
+                    <li><strong>Time Zones Differ:</strong> If your ad account is set to PST but your CRM is set to EST, a purchase made at 11:00 PM PST on Monday will appear as Tuesday in your CRM.</li>
+                    <li><strong>Modeled Conversions Exist:</strong> As we just covered, Google is algorithmically adding modeled conversions to its reports. Your CRM only records hard data (actual orders).</li>
+                    <li><strong>Offline Sales May Be Missing:</strong> If a user clicks an ad but ends up buying over the phone or in a physical store, the CRM records it, but Google Ads will miss it unless you have offline conversion tracking set up.</li>
+                    <li><strong>CRM Deduplication Rules Differ:</strong> A user might click a Facebook ad, then a Google ad, then an organic search result before buying. Google Ads will claim 100% credit for that sale. Facebook will also claim 100% credit. Your CRM, however, only records 1 sale and usually gives credit to the <em>last click</em>.</li>
+                </ul>
 
                 <h2>How to Enable It: The Required Tools</h2>
 
