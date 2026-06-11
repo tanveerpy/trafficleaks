@@ -139,7 +139,7 @@
                 
                 <p>Let's pull back the curtain.</p>
                 
-                <p>By default, GA4 operates on a deeply flawed logic system. It gives 100% of the credit to the <em>very last thing</em> a user clicked before handing over their credit card. It completely ignores how they actually found you.</p>
+                <p>Standard GA4 acquisition reports often push marketers into last-touch thinking. They show where the converting session came from, but they do not clearly show the earlier touchpoints that created the demand.</p>
                 
                 <p>Imagine this typical customer journey:</p>
 
@@ -175,12 +175,12 @@
                 <p>Have you ever checked your revenue sources and seen <code>paypal.com</code> or <code>stripe.com</code> as your highest-converting traffic source?</p>
                 <p>Here is what is happening: A user leaves your site to pay, then returns to your "Thank You" page. GA4 loses the original ad click and credits PayPal for the sale. Just like that, your ROAS tracking is obliterated.</p>
                 <div class="callout" style="border-left-color: #00f2fe; margin-top: 1rem; margin-bottom: 2rem;">
-                    <p style="margin-bottom: 0;"><strong>The Fix:</strong> You don't have to live with this. Go into your GA4 Data Stream settings, find <em>"List unwanted referrals,"</em> and add your payment gateway domains (e.g., <code>paypal.com</code>, <code>stripe.com</code>). GA4 will immediately start ignoring them as traffic sources and preserve the original ad click that actually drove the sale.</p>
+                    <p style="margin-bottom: 0;"><strong>The Fix:</strong> You don't have to live with this. Go into your GA4 Data Stream settings, find <em>"List unwanted referrals,"</em> and add your payment gateway domains (e.g., <code>paypal.com</code>, <code>stripe.com</code>). Additionally, ensure you set up <strong>Cross-Domain Measurement</strong> so that when a user moves from your store to a checkout domain, their session isn't broken. GA4 will then preserve the original ad click that actually drove the sale.</p>
                 </div>
 
                 <h3>3. Cross-Device Tracking Failure</h3>
                 <p>Your customers browse on their phones on the train, and buy on their laptops at home.</p>
-                <p>If your <a href="ga4-gtm-setup.html" style="color: var(--accent); font-weight: bold;">GA4 setup</a> doesn't have Google Signals or User-ID tracking properly enabled, GA4 counts that single person as two entirely different human beings. It looks like you paid for a useless mobile click, and got a magically free "Direct" desktop sale.</p>
+                <p>If your <a href="ga4-gtm-setup.html" style="color: var(--accent); font-weight: bold;">GA4 setup</a> doesn't have User-ID tracking properly configured to connect behavior across sessions and devices, GA4 counts that single person as two entirely different human beings. It looks like you paid for a useless mobile click, and got a magically free "Direct" desktop sale.</p>
 
                 <h2>How to Reveal the Truth (Attribution Paths)</h2>
 
@@ -227,7 +227,7 @@
                         <tr>
                             <td style="padding: 1rem; color: var(--text-muted);">Conversion Paths (Data-Driven)</td>
                             <td style="padding: 1rem; color: var(--text-muted);">Fractional credit across all touchpoints based on impact.</td>
-                            <td style="padding: 1rem; color: #00f2fe; font-weight: bold;">None. This is the source of truth.</td>
+                            <td style="padding: 1rem; color: #00f2fe; font-weight: bold;">Better decision-making, but still depends on clean tracking (UTMs, consent, etc.).</td>
                         </tr>
                     </tbody>
                 </table>
