@@ -15,9 +15,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Why GA4 Is Feeding You Bad Data | iTrackFix</title>
-    <meta name="description" content="Discover why default GA4 reports are feeding you bad data. Learn the truth about last-click attribution, the direct traffic issue, and how to reveal real customer paths.">
+    <meta name="description" content="GA4 traffic reports can mislead your marketing decisions. Learn how last-touch thinking, Direct traffic, payment referrals, and broken tracking hide the truth.">
         <link rel="canonical" href="https://itrackfix.com/ga4-bad-data.html">
     <meta property="og:url" content="https://itrackfix.com/ga4-bad-data.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Why GA4 Is Feeding You Bad Data | iTrackFix">
+    <meta property="og:description" content="GA4 traffic reports can mislead your marketing decisions. Learn how last-touch thinking, Direct traffic, payment referrals, and broken tracking hide the truth.">
+    <meta property="og:image" content="https://itrackfix.com/ga4_bad_data.webp">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
     <style>
@@ -72,7 +76,61 @@
             border-radius: 0 8px 8px 0;
         }
     </style>
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>\n    <script>mermaid.initialize({startOnLoad:true, theme: \'dark\'});</script>\n</head>
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>\n    <script>mermaid.initialize({startOnLoad:true, theme: \'dark\'});</script>\n
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://itrackfix.com/ga4-bad-data.html"
+      },
+      "headline": "Why GA4 Is Feeding You Bad Data (And How to Uncover the Truth)",
+      "description": "GA4 traffic reports can mislead your marketing decisions. Learn how last-touch thinking, Direct traffic, payment referrals, and broken tracking hide the truth.",
+      "image": "https://itrackfix.com/ga4_bad_data.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Tanveer"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "iTrackFix",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://itrackfix.com/logo.png"
+        }
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Why does GA4 show so much Direct traffic?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Direct traffic isn't just people typing in your URL. It includes un-tagged emails, clicks from secure (HTTPS) to non-secure (HTTP) sites, messaging apps like WhatsApp, and ad blockers stripping tracking parameters."
+        }
+      }, {
+        "@type": "Question",
+        "name": "How do I fix PayPal showing up as a traffic source?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You need to add payment gateways (like paypal.com, stripe.com) to your 'Unwanted Referrals' list in the GA4 Data Stream settings. This tells GA4 to ignore them and preserve the original traffic source."
+        }
+      }, {
+        "@type": "Question",
+        "name": "What is Data-Driven Attribution in GA4?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Unlike last-click, Data-Driven Attribution uses machine learning to assign fractional credit to every step in a user's journey. If a Facebook Ad contributed 30% to the likelihood of a sale, it gets 30% of the credit."
+        }
+      }]
+    }
+    </script>
+</head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
@@ -112,6 +170,10 @@
                 <div class="module-badge">DATA INTEGRITY</div>
                 <h1 class="hero-title">Why GA4 Is Feeding You Bad Data (And How to Uncover the Truth)</h1>
                 <p class="hero-subtitle">If you are relying on standard GA4 traffic acquisition reports, you are making marketing decisions based on a lie. Here is why last-click attribution is ruining your strategy.</p>
+                <div style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <img src="logo.png" alt="Tanveer" style="width: 30px; height: 30px; border-radius: 50%;">
+                    <span>Written by <strong>Tanveer</strong>, Analytics Specialist</span>
+                </div>
             </div>
         </div>
     </div>
