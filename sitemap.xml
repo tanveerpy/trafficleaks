@@ -64,4 +64,8 @@
       <loc>https://itrackfix.com/ga4-bad-data.html</loc>
       <priority>0.7</priority>
    </url>
+   <url>
+      <loc>https://itrackfix.com/tanveer-ahmed.html</loc>
+      <priority>0.6</priority>
+   </url>
 </urlset>
