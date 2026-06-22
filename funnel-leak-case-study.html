@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q6L5MSZFDT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q6L5MSZFDT');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How I Saved a Brand from Wasting 2x Their Ad Budget on a Broken Funnel | iTrackFix</title>
+    <meta name="description" content="Before doubling their ad spend, an ecommerce brand hired me for a funnel audit. Discover how I used GA4 and Microsoft Clarity to find a hidden price shock killing sales.">
+    <link rel="canonical" href="https://itrackfix.com/funnel-leak-case-study.html">
+    <meta property="og:url" content="https://itrackfix.com/funnel-leak-case-study.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How I Saved a Brand from Wasting 2x Their Ad Budget on a Broken Funnel">
+    <meta property="og:description" content="Before doubling their ad spend, an ecommerce brand hired me for a funnel audit. Discover how I used GA4 and Microsoft Clarity to find a hidden price shock killing sales.">
+    <meta property="og:image" content="https://itrackfix.com/funnel-leak.webp">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true, theme: 'dark'});</script>
+    <style>
+        .blog-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .blog-content h2 {
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+        .blog-content h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #00f2fe;
+            font-size: 1.4rem;
+        }
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+        .blog-content ul, .blog-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        .blog-content li {
+            margin-bottom: 0.5rem;
+        }
+        .blog-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .blog-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .callout {
+            background: var(--surface-light);
+            border-left: 4px solid var(--priority-critical);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .method-card {
+            background: rgba(22, 27, 34, 0.6);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://itrackfix.com/funnel-leak-case-study.html"
+      },
+      "headline": "How I Saved a Brand from Wasting 2x Their Ad Budget on a Broken Funnel",
+      "description": "Before doubling their ad spend, an ecommerce brand hired me for a funnel audit. Discover how I used GA4 and Microsoft Clarity to find a hidden price shock killing sales.",
+      "image": "https://itrackfix.com/funnel-leak.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Tanveer Ahmed"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "iTrackFix",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://itrackfix.com/logo.png"
+        }
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="./" class="logo">
+                <img src="logo.png" alt="iTrackFix Logo" style="height: 35px; margin-right: 10px; vertical-align: middle;"> iTrackFix
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('show'); document.querySelector('.nav-btn').classList.toggle('show');">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links">
+                <a href="./">Home</a>
+                <div class="dropdown">
+                    <button class="dropbtn">Audits <span class="arrow">▼</span></button>
+                    <div class="dropdown-content">
+                        <a href="traffic-audit.html">Traffic Audit</a>
+                        <a href="funnel-audit.html">Funnel Audit</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Setup & Tracking <span class="arrow">▼</span></button>
+                    <div class="dropdown-content">
+                        <a href="ga4-gtm-setup.html">GA4/GTM Setup</a>
+                        <a href="ecommerce-tracking.html">Ecommerce Tracking</a>
+                    </div>
+                </div>
+                <a href="agency-support.html">Agency Support</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <a href="./#audit-form" class="btn btn-primary nav-btn">Get Free Audit</a>
+        </div>
+    </nav>
+
+    <div class="hero" style="min-height: auto; padding: 10rem 0 3rem;">
+        <div class="container">
+            <div class="blog-header" style="max-width: 900px; margin: 0 auto;">
+                <div class="module-badge">CASE STUDY</div>
+                <h1 class="hero-title">How I Saved a Brand from Wasting 2x Their Ad Budget on a Broken Funnel</h1>
+                <p class="hero-subtitle">They thought they had a "traffic problem" and were about to double their ad spend. Instead, I ran a funnel audit and found a hidden $20 price shock destroying their checkout process.</p>
+                
+                <div style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <img src="tanveer-ahmed.webp" alt="Tanveer Ahmed" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover;">
+                    <span>Written by <a href="tanveer-ahmed.html" style="color: var(--text-primary); text-decoration: underline;"><strong>Tanveer Ahmed</strong></a>, Analytics Specialist</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="blog-content">
+                <img src="funnel-leak.webp" alt="Shopping cart dropping coins with analytics dashboard highlighting abandonment" class="blog-image">
+                
+                <p>Not every low-converting campaign needs more ad budget. In fact, pouring more money into a broken funnel is the fastest way to bankrupt a business.</p>
+                
+                <p>Recently, an ecommerce brand came to me with a massive problem. They were getting decent traffic from Meta and Google Ads, but their Return on Ad Spend (ROAS) was sitting dangerously close to 1.0. People were clicking the ads, viewing the products, and even adding them to their carts—but then, they vanished.</p>
+                
+                <p>The brand's agency told them: <em>"We just need more volume. Let's double the ad budget next month to push through the resistance."</em></p>
+                
+                <p>That was a terrible idea. I told them to pause the budget increase immediately and let me run a full <a href="funnel-audit.html" style="color: var(--accent); font-weight: bold;">Funnel Audit</a>.</p>
+                
+                <div class="callout" style="border-left-color: #ffaa00;">
+                    <p><strong>The Reality Check:</strong> If 100 people walk into a physical store, put items in a shopping cart, walk up to the cash register, and then 90 of them suddenly drop their items and run out the door... you don't spend more money on billboards outside. You figure out what is wrong with the cash register.</p>
+                </div>
+
+                <h2>The Investigation: Hunting for the Leak</h2>
+
+                <p>I didn't start by looking at their ad targeting. I started by looking at user behavior. To do this, I rely on two incredibly powerful tools:</p>
+                <ul>
+                    <li><strong>GA4 User Journeys:</strong> To map out exactly where the quantitative drop-off is occurring.</li>
+                    <li><strong>Microsoft Clarity:</strong> To watch session recordings and heatmaps to understand the qualitative <em>"why"</em> behind the drop-off.</li>
+                </ul>
+
+                <p>First, I opened up their <a href="ga4-gtm-setup.html" style="color: var(--accent);">GA4 setup</a> and built a custom funnel exploration report.</p>
+
+                <div style="margin: 3rem 0; padding: 2rem; background: rgba(22, 27, 34, 0.6); border: 1px solid var(--border-light); border-radius: 8px; text-align: center;">
+                    <h4 style="color: #dc3545; margin-bottom: 1rem;">The GA4 Funnel Drop-off</h4>
+                    <div class="mermaid">
+                    graph TD
+                        A[Product Page Views: 10,000] -->|35% Conversion| B[Add to Cart: 3,500]
+                        B -->|90% Conversion| C[Begin Checkout: 3,150]
+                        C -.->|Massive 85% Abandonment| D[Purchases: 472]
+                        
+                        style A fill:#0a58ca,stroke:#0d6efd,stroke-width:2px,color:#fff
+                        style B fill:#198754,stroke:#0f5132,stroke-width:2px,color:#fff
+                        style C fill:#198754,stroke:#0f5132,stroke-width:2px,color:#fff
+                        style D fill:#842029,stroke:#dc3545,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+                    </div>
+                </div>
+
+                <p>The data was glaringly obvious. The ads were working perfectly. People were highly motivated to buy—so motivated that an incredibly healthy 90% of people who added to cart proceeded to checkout. But once they hit the final checkout step, an astonishing 85% of them abandoned the purchase.</p>
+
+                <h2>The Smoking Gun: Microsoft Clarity</h2>
+
+                <p>Now that GA4 told me <em>where</em> the problem was, I needed to know <em>why</em>. I opened Microsoft Clarity and filtered the session recordings for users who triggered the "Begin Checkout" event but did not trigger a "Purchase."</p>
+
+                <p>After watching about 15 recordings, the pattern hit me like a brick.</p>
+
+                <p>Users would land on the product page. Right below the "Add to Cart" button, the brand had a prominent banner that read: <strong>"FREE SHIPPING ON ALL ORDERS TODAY."</strong></p>
+                
+                <p>The user, excited by the free shipping, would proceed to checkout. They would type in their email, their address, and hit "Continue to Payment."</p>
+
+                <p>Then, the screen would update.</p>
+
+                <div class="method-card" style="background: rgba(220, 53, 69, 0.05); border-color: #dc3545;">
+                    <h4 style="color: #ff4d4d; border-bottom: 1px solid #ff4d4d;">The Price Shock</h4>
+                    <p>Suddenly, a <strong>$20 "Standard Shipping & Handling" fee</strong> materialized on the final invoice right above the credit card input field.</p>
+                    <p>In the session recordings, I could literally see the users' mouse cursors freeze. They would hover over the $20 fee, scroll up to look at their cart total, hesitate for about five seconds, and then aggressively close the browser tab.</p>
+                </div>
+
+                <h2>The Fix That Saved Thousands</h2>
+
+                <p>I immediately scheduled a call with the founders. I showed them the GA4 drop-off chart and played the Microsoft Clarity recordings for them.</p>
+
+                <p>"Why is there a $20 shipping fee at checkout if your product page advertises free shipping?" I asked.</p>
+
+                <p>It turned out, the marketing team had pushed the "Free Shipping" banner live on the frontend to boost conversion rates, but they had forgotten to update the backend logistics rules in Shopify to actually waive the fee.</p>
+
+                <p>They weren't suffering from a traffic problem. They were suffering from a massive trust violation. Users felt deceived at the last possible moment, which is the absolute worst time to create friction.</p>
+
+                <h3>The Results</h3>
+                <p>We fixed the Shopify shipping rules that same afternoon. I advised them to hold their ad budget steady for one week to monitor the impact.</p>
+
+                <div class="method-card" style="background: rgba(25, 135, 84, 0.05); border-color: #198754;">
+                    <ul style="margin-bottom: 0;">
+                        <li>✅ <strong>Checkout Abandonment:</strong> Dropped from 85% to 42% (industry standard).</li>
+                        <li>✅ <strong>Return on Ad Spend (ROAS):</strong> Jumped from 1.1x to 2.8x instantly.</li>
+                        <li>✅ <strong>Ad Budget Saved:</strong> By not doubling the budget on a broken funnel, they saved an estimated $15,000 in wasted spend that month alone.</li>
+                    </ul>
+                </div>
+
+                <h2>The Takeaway for Business Owners</h2>
+
+                <p>Never scale an ad account blindly. If your campaigns aren't converting, do not immediately blame the algorithm, the ad creative, or the targeting. In many cases, <a href="crm-google-ads.html" style="color: var(--accent); font-weight: bold;">Google Ads is doing its job</a> by bringing you the right people.</p>
+
+                <p>Before you increase your budget, you must audit your funnel. Look for price shocks, broken mobile layouts, confusing navigation, or slow loading times. You have to seal the leaks in your bucket before you turn up the water pressure.</p>
+
+                <div style="margin-top: 4rem; padding: 2rem; background: rgba(0, 242, 254, 0.05); border: 1px solid var(--accent); border-radius: 8px;">
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Are you leaking sales at checkout?</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6;">If you have high traffic but low sales, do not spend another dollar on ads until you know exactly where your users are dropping off. I offer professional <a href="funnel-audit.html" style="color: var(--accent); text-decoration: underline;">Funnel Audits</a> using GA4 and heatmapping software to uncover the invisible roadblocks killing your conversion rate.</p>
+                    <a href="index.html#audit-form" class="btn btn-primary">Get a Free Funnel Audit</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container" style="align-items: flex-start;">
+            <div class="footer-brand" style="flex: 1 1 300px; min-width: 250px; text-align: left;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.8rem;">
+                    <img src="logo.png" alt="iTrackFix Logo" style="height: 35px;">
+                    <span style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.05em;">iTrackFix</span>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; max-width: 400px;">Expert GA4, GTM, and conversion funnel audits. We find exactly where your ad budget and sales are leaking, and repair your tracking infrastructure for maximum ROI.</p>
+            </div>
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="./#audit-form">Contact</a>
+                <a href="sitemap-page.html">Sitemap</a>
+            </div>
+            <div class="footer-copy">© 2026 iTrackFix. Forensic Data Analysis.</div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/923113151229" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 32 32" width="35" height="35" fill="white">
+            <path d="M16.05 32h-.05c-2.65 0-5.25-.65-7.55-1.95L0 32l2.05-8.25A15.8 15.8 0 010 15.95 16 16 0 1116.05 32zm0-29.45a13.4 13.4 0 00-13.4 13.4c0 2.65.7 5.25 2.05 7.55l-1.2 4.8 4.95-1.25a13.3 13.3 0 007.6 2.3h.05A13.45 13.45 0 0029.5 15.95 13.45 13.45 0 0016.05 2.55zm8.05 19.3c-.45 1.25-2.5 2.4-3.5 2.55-1 .15-2.25.4-6.4-1.3-4.95-2.05-8.2-7.15-8.45-7.5-.25-.35-2.05-2.7-2.05-5.15s1.25-3.65 1.7-4.15c.45-.5.95-.6 1.25-.6h.9c.3 0 .7-.1 1.05.7.4 1 1.3 3.1 1.45 3.4.15.3.25.65.1.95s-.25.45-.5.7c-.25.25-.5.55-.7.75-.25.25-.5.5.2 1.7A11.35 11.35 0 0014 18.25c1.45 1.1 2.3 1.35 2.8 1.55.5.2.8.15 1.1-.15.3-.3 1.3-1.5 1.65-2 .35-.5.7-.4 1.15-.25.45.15 2.8 1.3 3.25 1.55.45.25.75.4.85.6.1.2.1 1.15-.35 2.4z"/>
+        </svg>
+    </a>
+</body>
+</html>
