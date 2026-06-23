@@ -178,11 +178,11 @@
                     <p style="margin-bottom: 0;"><strong>Expert Note:</strong> In one recent setup for an info-product business, we discovered their cross-domain tracking was completely broken. Their Meta and Google Ads were getting zero credit for purchases. After implementing Layer 3 (Cross-Domain) and Layer 4 (Checkout Click tracking) below, their attributed ROAS jumped from 0.4x to 3.2x literally overnight.</p>
                 </div>
 
-                <h2>The 7 Methods to Track ThriveCart</h2>
+                                <h2>The 7 Methods to Track ThriveCart (Explained Simply)</h2>
 
                 <div class="method-card">
                     <h3>1. Native ThriveCart → GA4 Integration (Easiest)</h3>
-                    <p>ThriveCart can send events directly to your GA4 Measurement ID without any external tools.</p>
+                    <p><strong>The Layman Translation:</strong> Think of this like plugging a security camera directly into your TV. It's quick, it's easy, and it works right out of the box. You just paste your Google ID into ThriveCart, and ThriveCart throws the basic purchase data over the fence to Google.</p>
                     <p><strong>What it tracks:</strong> Product views, Checkout activity, Purchases, and Revenue.</p>
                     <p><strong>How to set it up:</strong></p>
                     <ol>
@@ -195,7 +195,7 @@
 
                 <div class="method-card">
                     <h3>2. ThriveCart → GTM Container → GA4 (Recommended)</h3>
-                    <p>This is ThriveCart's current recommended method. Instead of putting your GA4 ID directly into ThriveCart, you install a Google Tag Manager container on the checkout.</p>
+                    <p><strong>The Layman Translation:</strong> Instead of a direct cable between the checkout and Google, you set up a "switchboard operator" (Google Tag Manager). When a sale happens, ThriveCart tells the operator. The operator can then call Google Analytics, Facebook Ads, and Google Ads all at once to tell them the news. It's much more organized and powerful.</p>
                     <p><strong>What it tracks:</strong> <code>view_item</code>, <code>purchase</code>, Revenue, Tax, Shipping, Product details.</p>
                     <div class="pros-cons">
                         <div>
@@ -203,7 +203,7 @@
                             <ul style="list-style: none; padding-left: 0; margin-top: 0.5rem;">
                                 <li>✅ Vastly easier debugging</li>
                                 <li>✅ You can add Google Ads and Meta Pixel tags easily</li>
-                                <li>✅ Can be expanded to Server-Side GTM later</li>
+                                <li>✅ Can be expanded to Server-Side tracking later</li>
                             </ul>
                         </div>
                     </div>
@@ -212,7 +212,7 @@
 
                 <div class="method-card">
                     <h3>3. Manual GTM Ecommerce Tracking</h3>
-                    <p>For complete architectural control, you can intercept the ecommerce data that ThriveCart exposes in the Data Layer and create your GA4 events manually.</p>
+                    <p><strong>The Layman Translation:</strong> This is like building your own custom switchboard from scratch. ThriveCart leaves a highly detailed receipt (called a "Data Layer") on the counter. You write custom rules telling your switchboard exactly how to pick up that receipt, read the tax and shipping lines, and translate it perfectly into Google's specific language.</p>
                     <table class="table" style="width: 100%; border-collapse: collapse; margin-top: 1rem; margin-bottom: 1rem; border: 1px solid var(--border-light);">
                         <tr style="background: rgba(22, 27, 34, 0.8);"><th style="padding: 10px; text-align: left;">ThriveCart Action</th><th style="padding: 10px; text-align: left;">GA4 Event</th></tr>
                         <tr style="border-bottom: 1px solid var(--border-light);"><td style="padding: 10px;">Product viewed</td><td style="padding: 10px;"><code>view_item</code></td></tr>
@@ -224,6 +224,7 @@
 
                 <div class="method-card">
                     <h3>4. Track Sales Page → Checkout Clicks</h3>
+                    <p><strong>The Layman Translation:</strong> Imagine a physical store where people browse the aisles (your website) and then walk through a doorway to the cash register (ThriveCart). If you don't put a bell on that doorway, you have no idea how many people walked to the register but didn't buy. Tracking the "Buy Now" button click puts a digital bell on that door.</p>
                     <p>Many businesses completely forget this step and lose crucial intent data. If a user is on your landing page and clicks "Buy Now" to go to ThriveCart, GA4 cannot automatically register that intent.</p>
                     <p>You must track the <code>click_checkout</code> event whenever a user clicks the outbound link:</p>
                     <pre style="background: #0d1117; padding: 1rem; border-radius: 4px; overflow-x: auto; color: #c9d1d9;"><code>&lt;a href="https://yourname.thrivecart.com/..."&gt;Buy Now&lt;/a&gt;</code></pre>
@@ -232,8 +233,8 @@
 
                 <div class="method-card" style="border-color: #ffaa00;">
                     <h3 style="color: #ffaa00;">5. Cross-Domain Tracking (Most Important)</h3>
-                    <p><strong>This is where 90% of ThriveCart setups fail.</strong></p>
-                    <p>Your sales funnel usually crosses two different domains:</p>
+                    <p><strong>The Layman Translation:</strong> Imagine a customer walking from your main store into the checkout building next door. When they cross the street, they take off their nametag. Google sees a stranger walk into the checkout building and buy something. Cross-domain tracking staples the nametag to their shirt so Google knows it's the exact same person who clicked your Facebook ad 10 minutes ago.</p>
+                    <p><strong>This is where 90% of ThriveCart setups fail.</strong> Your sales funnel usually crosses two different domains:</p>
                     <div class="mermaid">
                     graph LR
                         A[yourdomain.com] -->|Session Break| B[yourname.thrivecart.com]
@@ -246,6 +247,7 @@
 
                 <div class="method-card">
                     <h3>6. Thank You Page Tracking</h3>
+                    <p><strong>The Layman Translation:</strong> This is the old-school way. You simply wait at the exit door of the store (the "Thank You" page). Whenever someone walks out that door, you tally a sale on your clipboard. It's easy, but you might miss people who close their browser before the page loads, and you won't know exactly what they bought or how much tax they paid.</p>
                     <p>This is a simple but effective fallback. You fire a <code>purchase</code> event via GTM when a user successfully reaches <code>/thank-you</code> or <code>/order-complete</code>.</p>
                     <div class="pros-cons">
                         <div>
@@ -264,6 +266,7 @@
 
                 <div class="method-card">
                     <h3>7. Full Funnel Tracking (Best Practice)</h3>
+                    <p><strong>The Layman Translation:</strong> This is like having security cameras at every single aisle and shelf. You see the customer look at the product, click the button, look at the extra add-on (order bump), and finally buy. Because you have cameras everywhere, you can see exactly where people get bored and leave.</p>
                     <p>For a complete, professional ThriveCart funnel, you need granular visibility. Track every single stage:</p>
                     <ul style="column-count: 2;">
                         <li><strong>Landing Page:</strong> <code>page_view</code></li>
